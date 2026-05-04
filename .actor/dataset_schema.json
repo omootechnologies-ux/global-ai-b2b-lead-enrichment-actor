@@ -1,69 +1,174 @@
 {
-  "actorDatasetSchemaVersion": 1,
+  "actorSpecification": 1,
   "fields": {
-    "businessName": {
-      "type": "string"
-    },
-    "website": {
-      "type": "string"
-    },
-    "category": {
-      "type": "string"
-    },
-    "country": {
-      "type": "string"
-    },
-    "city": {
-      "type": "string"
-    },
-    "emails": {
-      "type": "array"
-    },
-    "phones": {
-      "type": "array"
-    },
-    "leadScore": {
-      "type": "integer"
-    },
-    "priority": {
-      "type": "string"
-    },
-    "recommendedOffer": {
-      "type": "string"
-    },
-    "problemFound": {
-      "type": "string"
-    },
-    "outreachMessage": {
-      "type": "string"
-    },
-    "sourceUrl": {
-      "type": "string"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "businessName": {
+        "type": "string",
+        "title": "Business name",
+        "description": "Detected company or business name."
+      },
+      "websiteUrl": {
+        "type": "string",
+        "title": "Website URL",
+        "description": "Public website URL that was crawled."
+      },
+      "domain": {
+        "type": "string",
+        "title": "Domain",
+        "description": "Normalized business domain."
+      },
+      "country": {
+        "type": "string",
+        "title": "Country",
+        "description": "Country inferred from input, page content, or discovery query."
+      },
+      "city": {
+        "type": "string",
+        "title": "City",
+        "description": "City inferred from input, page content, or discovery query."
+      },
+      "category": {
+        "type": "string",
+        "title": "Category",
+        "description": "Business niche or industry category."
+      },
+      "email": {
+        "type": "string",
+        "title": "Email",
+        "description": "Public business email found on the website."
+      },
+      "phone": {
+        "type": "string",
+        "title": "Phone",
+        "description": "Public business phone number found on the website."
+      },
+      "socialLinks": {
+        "type": "array",
+        "title": "Social links",
+        "description": "Public social media links found on the website.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "detectedGaps": {
+        "type": "array",
+        "title": "Detected gaps",
+        "description": "Website, SEO, contact, conversion, or trust gaps detected for the business.",
+        "items": {
+          "type": "string"
+        }
+      },
+      "leadScore": {
+        "type": "number",
+        "title": "Lead score",
+        "description": "Lead quality score from 0 to 100."
+      },
+      "recommendedOffer": {
+        "type": "string",
+        "title": "Recommended offer",
+        "description": "Suggested service or package to sell to this lead."
+      },
+      "outreachMessage": {
+        "type": "string",
+        "title": "Outreach message",
+        "description": "Personalized outreach message generated for the lead."
+      },
+      "source": {
+        "type": "string",
+        "title": "Source",
+        "description": "How the lead was found, such as supplied URL, SerpApi, Google Custom Search, or Bing."
+      },
+      "crawledAt": {
+        "type": "string",
+        "title": "Crawled at",
+        "description": "ISO timestamp when the website was processed."
+      }
     }
   },
   "views": {
     "overview": {
-      "title": "Leads",
+      "title": "Lead enrichment results",
+      "description": "Enriched B2B leads with contact signals, business gaps, score, offer recommendation, and outreach message.",
       "transformation": {
         "fields": [
           "businessName",
-          "website",
-          "category",
+          "websiteUrl",
+          "domain",
           "country",
           "city",
-          "emails",
-          "phones",
+          "category",
+          "email",
+          "phone",
+          "detectedGaps",
           "leadScore",
-          "priority",
           "recommendedOffer",
-          "problemFound",
           "outreachMessage",
-          "sourceUrl"
+          "source",
+          "crawledAt"
         ]
       },
       "display": {
         "component": "table",
-        "properties": {}
+        "properties": {
+          "businessName": {
+            "label": "Business",
+            "format": "text"
+          },
+          "websiteUrl": {
+            "label": "Website",
+            "format": "link"
+          },
+          "domain": {
+            "label": "Domain",
+            "format": "text"
+          },
+          "country": {
+            "label": "Country",
+            "format": "text"
+          },
+          "city": {
+            "label": "City",
+            "format": "text"
+          },
+          "category": {
+            "label": "Category",
+            "format": "text"
+          },
+          "email": {
+            "label": "Email",
+            "format": "text"
+          },
+          "phone": {
+            "label": "Phone",
+            "format": "text"
+          },
+          "detectedGaps": {
+            "label": "Gaps",
+            "format": "array"
+          },
+          "leadScore": {
+            "label": "Score",
+            "format": "number"
+          },
+          "recommendedOffer": {
+            "label": "Offer",
+            "format": "text"
+          },
+          "outreachMessage": {
+            "label": "Message",
+            "format": "text"
+          },
+          "source": {
+            "label": "Source",
+            "format": "text"
+          },
+          "crawledAt": {
+            "label": "Crawled",
+            "format": "date"
+          }
+        }
       }
     }
   }
