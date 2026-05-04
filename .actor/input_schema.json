@@ -1,0 +1,234 @@
+{
+  "title": "Global AI B2B Lead Enrichment input",
+  "description": "Discover or crawl company websites, extract public B2B contact signals, detect digital gaps, score sales opportunity, recommend an offer, and generate outreach copy.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Company website URLs",
+      "type": "array",
+      "description": "Optional list of public company websites to crawl and enrich.",
+      "editor": "requestListSources",
+      "prefill": [
+        {
+          "url": "https://www.example.com"
+        }
+      ]
+    },
+    "manualLeads": {
+      "title": "Manual leads",
+      "type": "array",
+      "description": "Optional JSON array of known leads. Each object can include businessName, website, category, city, country, phone, email, and notes.",
+      "editor": "json",
+      "default": []
+    },
+    "discoveryProvider": {
+      "title": "Discovery provider",
+      "type": "string",
+      "description": "Optional search provider for finding company websites from queries.",
+      "editor": "select",
+      "enum": [
+        "none",
+        "serpapi",
+        "googleCustomSearch",
+        "bing"
+      ],
+      "enumTitles": [
+        "None",
+        "SerpApi Google Search",
+        "Google Custom Search JSON API",
+        "Bing Web Search API"
+      ],
+      "default": "none"
+    },
+    "searchQueries": {
+      "title": "Search queries",
+      "type": "array",
+      "description": "Optional list of search queries. If empty and a discovery provider is selected, queries are generated from countries and niches.",
+      "editor": "json",
+      "default": []
+    },
+    "countries": {
+      "title": "Countries",
+      "type": "array",
+      "description": "Countries used to generate search queries.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enumSuggestedValues": [
+          "United States",
+          "United Kingdom",
+          "Canada",
+          "Australia",
+          "Germany",
+          "United Arab Emirates",
+          "South Africa",
+          "Kenya",
+          "Tanzania"
+        ]
+      },
+      "default": [
+        "United States",
+        "United Kingdom",
+        "Canada",
+        "Australia"
+      ]
+    },
+    "niches": {
+      "title": "High-value niches",
+      "type": "array",
+      "description": "Business niches to target and score highly.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enumSuggestedValues": [
+          "dentists",
+          "law firms",
+          "roofing companies",
+          "real estate agents",
+          "clinics",
+          "solar installers",
+          "restaurants",
+          "salons",
+          "hotels",
+          "SaaS companies"
+        ]
+      },
+      "default": [
+        "dentists",
+        "law firms",
+        "roofing companies",
+        "real estate agents",
+        "clinics"
+      ]
+    },
+    "maxSearchResultsPerQuery": {
+      "title": "Max search results per query",
+      "type": "integer",
+      "description": "Maximum URLs fetched per search query.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "maxResults": {
+      "title": "Max output leads",
+      "type": "integer",
+      "description": "Maximum final leads pushed to dataset.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "maxPagesPerWebsite": {
+      "title": "Max pages per website",
+      "type": "integer",
+      "description": "Same-host pages to crawl for each website.",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 25
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Maximum parallel crawling requests.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "includePersonalEmails": {
+      "title": "Include personal-looking emails",
+      "type": "boolean",
+      "description": "When false, prefer generic business emails such as info@, sales@, hello@, contact@.",
+      "default": false
+    },
+    "outreachLanguage": {
+      "title": "Outreach language",
+      "type": "string",
+      "description": "Language used for outreach messages.",
+      "editor": "select",
+      "enum": [
+        "English",
+        "Swahili",
+        "Spanish",
+        "French",
+        "German"
+      ],
+      "default": "English"
+    },
+    "outreachTone": {
+      "title": "Outreach tone",
+      "type": "string",
+      "description": "Tone used for generated outreach copy.",
+      "editor": "select",
+      "enum": [
+        "direct",
+        "friendly",
+        "consultative",
+        "premium"
+      ],
+      "default": "consultative"
+    },
+    "serpApiKey": {
+      "title": "SerpApi key",
+      "type": "string",
+      "description": "Secret SerpApi API key.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "googleApiKey": {
+      "title": "Google API key",
+      "type": "string",
+      "description": "Secret Google Custom Search JSON API key.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "googleCx": {
+      "title": "Google Custom Search CX",
+      "type": "string",
+      "description": "Google Custom Search engine ID.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "bingApiKey": {
+      "title": "Bing Web Search API key",
+      "type": "string",
+      "description": "Secret Bing Web Search API key.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "excludeDomains": {
+      "title": "Exclude domains",
+      "type": "array",
+      "description": "Domains to exclude from discovery results.",
+      "editor": "json",
+      "default": [
+        "facebook.com",
+        "instagram.com",
+        "linkedin.com",
+        "youtube.com",
+        "twitter.com",
+        "x.com",
+        "tiktok.com",
+        "yelp.com",
+        "tripadvisor.com",
+        "yellowpages.com"
+      ]
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Optional proxy configuration for crawling.",
+      "editor": "proxy",
+      "default": {
+        "useApifyProxy": false
+      }
+    },
+    "debug": {
+      "title": "Debug output",
+      "type": "boolean",
+      "description": "Include extraction evidence and diagnostics in each dataset item.",
+      "default": false
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

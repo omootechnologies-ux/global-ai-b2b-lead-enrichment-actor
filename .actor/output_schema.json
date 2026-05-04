@@ -1,0 +1,16 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Global AI B2B Lead Enrichment output",
+  "properties": {
+    "leads": {
+      "type": "array",
+      "title": "Enriched leads",
+      "template": "{{links.defaultDatasetUrl}}/items?clean=true"
+    },
+    "summary": {
+      "type": "object",
+      "title": "Run summary",
+      "template": "{{links.defaultKeyValueStoreUrl}}/records/OUTPUT"
+    }
+  }
+}

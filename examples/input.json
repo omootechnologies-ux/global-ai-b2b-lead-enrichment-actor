@@ -1,0 +1,20 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.example.com"
+    }
+  ],
+  "manualLeads": [
+    {
+      "businessName": "Acme Dental Clinic",
+      "website": "https://www.example.com",
+      "category": "dentist",
+      "city": "Austin",
+      "country": "United States"
+    }
+  ],
+  "maxPagesPerWebsite": 2,
+  "maxResults": 10,
+  "outreachLanguage": "English",
+  "outreachTone": "consultative"
+}

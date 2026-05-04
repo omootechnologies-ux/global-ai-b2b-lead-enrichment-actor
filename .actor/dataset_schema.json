@@ -1,0 +1,70 @@
+{
+  "actorDatasetSchemaVersion": 1,
+  "fields": {
+    "businessName": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "emails": {
+      "type": "array"
+    },
+    "phones": {
+      "type": "array"
+    },
+    "leadScore": {
+      "type": "integer"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "recommendedOffer": {
+      "type": "string"
+    },
+    "problemFound": {
+      "type": "string"
+    },
+    "outreachMessage": {
+      "type": "string"
+    },
+    "sourceUrl": {
+      "type": "string"
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Leads",
+      "transformation": {
+        "fields": [
+          "businessName",
+          "website",
+          "category",
+          "country",
+          "city",
+          "emails",
+          "phones",
+          "leadScore",
+          "priority",
+          "recommendedOffer",
+          "problemFound",
+          "outreachMessage",
+          "sourceUrl"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {}
+      }
+    }
+  }
+}
